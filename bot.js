@@ -35,24 +35,24 @@ listener.on('message', msg => {
           else console.log(`Favorited ${id} ${data.id}`);
         });
       }
-      console.log(content);
+      // console.log(content);
       const arr = content.split("> ");
       const arr2 = arr[arr.length-1].split("<");
       const arr3 = arr2[0].split(" ");
-      const commend = arr3.shift();
+      const command = arr3.shift();
       const arrLen = arr3.length;
 
       const regex2 = /(公主)/i;
       const regex3 = /(一定)/i;
       const regex4 = /(做?一|做?1|当?一|当?1)/i;
 
-      if (regex2.test(commend)) {
+      if (regex2.test(command)) {
         if (arrLen < 2) {
           toot(acct, id, -2)
             .then(response => console.log(response))
             .catch(error => console.error(error));
         } else {
-          if (regex3.test(commend)) {
+          if (regex3.test(command)) {
             let random = Math.floor(Math.random() * arrLen);
             toot(acct, id, 1, arr3[random])
               .then(response => console.log(response))
@@ -73,7 +73,7 @@ listener.on('message', msg => {
             }
         }
       }
-    } else if (regex4.test(commend)) {
+    } else if (regex4.test(command)) {
       if (arrLen < 2) {
         toot(acct, id, -2)
           .then(response => console.log(response))
@@ -85,7 +85,7 @@ listener.on('message', msg => {
           .catch(error => console.error(error));
       }
     } else {
-      toot(acct, id, -3, commend)
+      toot(acct, id, -3, command)
         .then(response => console.log(response))
         .catch(error => console.error(error));
     }
@@ -148,7 +148,7 @@ async function toot(acct, reply_id, flag, obj) {
     return {
       success: false,
       flag: -3,
-      commend: obj
+      command: obj
     }
   }
 }
