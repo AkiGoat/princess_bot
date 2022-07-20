@@ -84,7 +84,7 @@ listener.on('message', msg => {
           .then(response => console.log(response))
           .catch(error => console.error(error));
       }
-    } 
+    }
     // else {
     //   toot(acct, id, -3, command)
     //     .then(response => console.log(response))
