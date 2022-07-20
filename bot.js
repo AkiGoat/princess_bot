@@ -119,7 +119,7 @@ async function toot(acct, reply_id, flag, obj) {
     }
   } else if (flag == -1) {
     const params = {
-      status: `@${acct} 抱歉，你们这次没有人可以做公主。`,
+      status: `@${acct} 抱歉，这次没有人可以做公主。`,
       in_reply_to_id: reply_id,
       language: "zh"
     }
