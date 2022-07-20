@@ -25,7 +25,7 @@ listener.on('message', msg => {
       M.post('statuses', params);
       console.log(`@${acct} followed.`);
     } else if (msg.data.type === 'mention') {
-      const regex1 = /(喜欢|点赞|可爱|like|笑|棒|真|好|么么)/i;
+      const regex1 = /(喜欢|点赞|笑|棒|真|好|么么|不错)/i;
       const content = msg.data.status.content;
       // let text = msg.data.status.content;
       const id = msg.data.status.id;
