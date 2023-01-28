@@ -2,7 +2,7 @@
   "name": "princess_bot",
   "version": "0.1.0",
   "description": "Test code for Princess Bot on Quaoar.",
-  "main": "ps_bot.js",
+  "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
