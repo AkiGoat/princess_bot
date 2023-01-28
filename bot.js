@@ -52,9 +52,15 @@ listener.on('message', msg => {
             .then(response => console.log(response))
             .catch(error => console.error(error));
         } else {
+          const arr_ = command.split("一定");
+          const arr_1 = arr_[arr_.length-1].split("公主");
+          const reg_ = /(做上?|当上?|成为)/i;
+          const match_ = arr_1[0].match(reg_)[0];
+          const arr_2 = arr_1[0].split(match_);
+          const type_ = arr_2[arr_2.length-1];
           if (regex3.test(command)) {
             let random = Math.floor(Math.random() * arrLen);
-            toot(acct, id, 1, arr3[random])
+            toot(acct, id, 1, arr3[random], type_)
               .then(response => console.log(response))
               .catch(error => console.error(error));
           } else {
@@ -63,11 +69,11 @@ listener.on('message', msg => {
             }
             let random2 = Math.floor(Math.random() * arr3.length);
             if (arr3[random2]==-1){
-              toot(acct, id, -1)
+              toot(acct, id, -1, '', type_)
                 .then(response => console.log(response))
                 .catch(error => console.error(error));
             } else {
-              toot(acct, id, 1, arr3[random2])
+              toot(acct, id, 1, arr3[random2], type_)
                 .then(response => console.log(response))
                 .catch(error => console.error(error));
             }
@@ -94,7 +100,7 @@ listener.on('message', msg => {
 }
 });
 
-async function toot(acct, reply_id, flag, obj) {
+async function toot(acct, reply_id, flag, obj='', type_='') {
   if (flag == -2){
     const params = {
       status: `@${acct} 至少需要两个对象。`,
@@ -108,7 +114,7 @@ async function toot(acct, reply_id, flag, obj) {
     }
   } else if (flag == 1) {
     const params = {
-      status: `@${acct} 这次${obj}做公主！`,
+      status: `@${acct} 这次${obj}做${type_}公主！`,
       in_reply_to_id: reply_id,
       language: "zh"
     }
@@ -119,7 +125,7 @@ async function toot(acct, reply_id, flag, obj) {
     }
   } else if (flag == -1) {
     const params = {
-      status: `@${acct} 抱歉，这次没有人可以做公主。`,
+      status: `@${acct} 抱歉，这次没有人可以做${type_}公主。`,
       in_reply_to_id: reply_id,
       language: "zh"
     }
